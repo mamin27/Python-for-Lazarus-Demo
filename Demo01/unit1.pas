@@ -37,15 +37,17 @@ var
 implementation
 
 uses
-  LclType, proc_py;
+  LclType;
 
 {$R unit1.lfm}
 
 const
+{$IFDEF WINDOWS}
     cPyLibraryWindows = 'python37.dll';
+{$ENDIF}
+{$IFDEF UNIX}
     cPyLibraryLinux = 'libpython3.7m.so.1.0';
-    cPyLibraryMac = '/Library/Frameworks/Python.framework/Versions/3.7/lib/libpython3.7.dylib';
-    cPyZipWindows = 'python37.zip';
+{$ENDIF}
 
 { TForm1 }
 
@@ -66,8 +68,7 @@ var
 begin
   S:=
     {$ifdef windows} cPyLibraryWindows {$endif}
-    {$ifdef linux} cPyLibraryLinux {$endif}
-    {$ifdef darwin} cPyLibraryMac {$endif} ;
+    {$ifdef linux} cPyLibraryLinux {$endif};
   PythonEngine1.DllPath:= ExtractFileDir(S);
   PythonEngine1.DllName:= ExtractFileName(S);
   PythonEngine1.LoadDll;

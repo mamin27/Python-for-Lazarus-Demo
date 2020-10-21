@@ -80,6 +80,7 @@ object Form1: TForm1
   end
   object PythonEngine1: TPythonEngine
     AutoLoad = False
+    DllName = 'libpython3.8m.so'
     APIVersion = 1013
     RegVersion = '3.7'
     UseLastKnownVersion = False
